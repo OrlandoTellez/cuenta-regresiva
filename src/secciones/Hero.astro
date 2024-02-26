@@ -5,12 +5,82 @@ import Section from "../components/Section.astro"
 <Section>
     <article>
         <h1>Crea un temporizador</h1>
+        <input id="fecha" type="datetime-local">
+        <button id="iniciar">Iniciar Temporizador</button>
+
+        <div id="contenedor">
+            <div>
+                <p id="dias">00</p>
+                <span>Días</span>
+            </div>
+            <div>
+                <p id="horas">00</p>
+                <span>Horas</span>
+            </div>
+            <div>
+                <p id="minutos">00</p>
+                <span>Minutos</span>
+            </div>
+            <div>
+                <p id="segundos">00</p>
+                <span>Segundos</span>
+            </div>
+        </div>
     </article>
 </Section>
 
 <style>
     article{
-        
         width: 100%;
     }
+
+    #contenedor{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    #contenedor div{
+        text-align: center;
+    }
+
+    #fecha{
+        background-color: black;
+        border: none;
+        color: aliceblue;
+        font-size: 1.6em;
+
+    }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dias = document.querySelector("#dias");
+        const horas = document.querySelector("#horas");
+        const minutos = document.querySelector("#minutos");
+        const segundos = document.querySelector("#segundos");
+
+        function cuentaRegresiva(){
+            const fecha = document.querySelector("#fecha").value;
+            const nuevaFecha = new Date(fecha);
+            const fechaActual = new Date();
+            const segundosActuales = (nuevaFecha - fechaActual) / 1000;
+
+            const calcDias = Math.floor(segundosActuales / 3600 / 24);
+            const calcHoras = Math.floor(segundosActuales / 3600) % 24;
+            const calcMinutos = Math.floor(segundosActuales / 60) % 60;
+            const calcSegundos = Math.floor(segundosActuales % 60)
+            
+            dias.innerHTML = calcDias;
+            horas.innerHTML = calcHoras;
+            minutos.innerHTML = calcMinutos;
+            segundos.innerHTML = calcSegundos;
+        }
+        document.querySelector("#iniciar").addEventListener("click", cuentaRegresiva);
+
+        setInterval(cuentaRegresiva, 1000)
+
+    });
+
+</script>
