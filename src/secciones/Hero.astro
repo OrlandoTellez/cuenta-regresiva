@@ -4,10 +4,11 @@ import Section from "../components/Section.astro"
 
 <Section>
     <article>
-        <h1>Crea un temporizador</h1>
-        <input id="fecha" type="datetime-local">
-        <button id="iniciar">Iniciar Temporizador</button>
-
+        <div class="container-text">
+            <h1>Crea un temporizador</h1>
+            <input id="fecha" type="datetime-local">
+            <button id="iniciar">Iniciar Temporizador</button>
+        </div>
         <div id="contenedor">
             <div>
                 <p id="dias">00</p>
@@ -32,6 +33,8 @@ import Section from "../components/Section.astro"
 <style>
     article{
         width: 100%;
+        height: 50vh;
+        
     }
 
     #contenedor{
@@ -46,11 +49,34 @@ import Section from "../components/Section.astro"
     }
 
     #fecha{
-        background-color: black;
         border: none;
-        color: aliceblue;
         font-size: 1.6em;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid rgb(0, 0, 0);
+        width: 60%;
+    }
 
+    .container-text{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        gap: 20px;
+    }
+
+    .container-text h1{
+        font-size: 1.8em;
+    }
+
+    #iniciar{
+        background-color: black;
+        color: aliceblue;
+        padding: 10px;
+        font-size: 1.3em;
+        border: none;
+        border-radius: 5px;
     }
 </style>
 
